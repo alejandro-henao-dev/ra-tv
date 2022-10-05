@@ -1,5 +1,6 @@
 {
   "name": "@ratv/web",
+  "description": "",
   "version": "0.1.0",
   "private": true,
   "scripts": {
