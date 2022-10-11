@@ -1,4 +1,5 @@
 {
   "host": "api-app.feathersjs.com",
-  "port": "PORT"
+  "port": "PORT",
+  "db": ".rat-tv/data.sqlite"
 }

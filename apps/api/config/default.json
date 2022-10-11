@@ -1,5 +1,6 @@
 {
   "host": "localhost",
+  "db": "data/devData.sqlite",
   "port": 3030,
   "public": "../public/",
   "paginate": {
