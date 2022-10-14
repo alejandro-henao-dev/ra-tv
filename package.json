@@ -23,6 +23,11 @@
   "author": "Alejandro Henao",
   "license": "ISC",
   "dependencies": {
+    "@emotion/cache": "^11.10.3",
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
     "@feathersjs/configuration": "^4.5.15",
     "@feathersjs/errors": "^4.5.15",
     "@feathersjs/express": "^4.5.15",
@@ -32,7 +37,6 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.8",
-    "@mui/styled-engine-sc": "^5.10.6",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "feathers-sequelize": "^6.3.4",
@@ -43,7 +47,6 @@
     "sequelize": "^6.24.0",
     "serve-favicon": "^2.5.0",
     "sqlite3": "^5.1.2",
-    "styled-components": "^5.3.6",
     "winston": "^3.8.2"
   },
   "devDependencies": {
