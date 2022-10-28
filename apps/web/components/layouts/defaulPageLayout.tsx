@@ -24,12 +24,20 @@ export const DefaultPageLayout: React.FC<props> = ({
         gap:"2.5rem",
       }}
     >
-      <PageHeader />
-      
+     <Box
+        sx={{
+          pl:"2rem"
+        }}
+      >
+        <PageHeader />
+      </Box>
       <Box
         component="main"
         flexDirection="column"
         flexGrow="1"
+        sx={{
+          pl:"2rem"
+        }}
         
       >
         {children}
