@@ -7,7 +7,7 @@ const dummy = {
   badges: ['anime flv'],
   coverImg: '/img/dummy.jpg',
   meta: {
-    link:"/"
+    link:"/detail"
   }
 }
 const dummyGal=new Array(12).fill(dummy)
