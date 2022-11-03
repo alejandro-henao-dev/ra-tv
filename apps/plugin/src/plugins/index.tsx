@@ -1,1 +1,5 @@
-export const plugins=[]
+import { animeFvl } from "./animefvl";
+
+export const plugins = [
+  animeFvl
+]
