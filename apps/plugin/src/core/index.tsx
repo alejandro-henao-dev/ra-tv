@@ -1,24 +1,25 @@
-import { OnCoverBtn } from "./components/onCoverButton"
-import ReactDOM from "react-dom";
-export interface CoreProps{
-  injectCoverGalleryButtons: typeof injectCoverGalleryButtons
-  custom:Object
-}
+import { inject } from "./lib/inject";
+import { Plugin } from "./types";
 
-export type Core = (plugin: Plugin) => Core
-export type Plugin = (props: CoreProps) => Core
+let state = {}
 
-const injectCoverGalleryButtons = (target:HTMLElement) => {
-  const wrapper=document.createElement("div")
-  target.append(wrapper)
-  ReactDOM.render(<OnCoverBtn />, wrapper);
-}
+export const core = (plugins: Plugin[]): void => {
+  let setNext=false
+  
+  const props= {
+    inject,
+    setState: (cb)=>{ state = cb(state) },
+    next: () => { setNext = true }
+  }
 
-const customData = {}
 
-export const core:Core = (plugin:Plugin) => {
-  return plugin({
-    injectCoverGalleryButtons,
-    custom:customData
+  plugins.forEach(plugin => {
+    if (!setNext) {
+      plugin(props)  
+      return
+    }
+    setNext=false
   })
+
+
 }
