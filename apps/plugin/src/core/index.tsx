@@ -1,9 +1,9 @@
 import { inject } from "./lib/inject";
-import { Plugin } from "./types";
+import { CoreConfig, Plugin } from "./types";
 
 let state = {}
 
-export const core = (plugins: Plugin[]): void => {
+export const core = (config:CoreConfig,plugins: Plugin[]): void => {
   let setNext=false
   
   const props= {

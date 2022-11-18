@@ -1,5 +1,5 @@
 import { core } from "./core";
-import { Plugin } from "./core/types";
+import { CoreConfig, Plugin } from "./core/types";
 import { plugins as corePlugins} from "./plugins";
 
 
@@ -9,8 +9,8 @@ export const addPlugin = (plugin:any) => {
   plugins.push(plugin)
 }
 
-export const raTv = (userplugins:Plugin[]=[]) => {
-  core( [...plugins, ...userplugins] )
+export const raTv = (config?:CoreConfig,userplugins:Plugin[]=[]) => {
+  core(config, [...plugins, ...userplugins] )
 }
 
 interface CustomWindow extends Window{

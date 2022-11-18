@@ -9,7 +9,7 @@ export type Props = {
   onActionClick?: () => void,
   className?:string
 }
-export const Actions:FC<Props> = ({onActionClick,className}) => {
+export const Actions: FC<Props> = ({ onActionClick = () => { },className}) => {
   return <>
     <IconButton
       onClick={() => {

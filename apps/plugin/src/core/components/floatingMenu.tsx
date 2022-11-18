@@ -7,9 +7,9 @@ import { classes } from "../utils/classes"
 
 export type Props = {
   className?: string,
-  viewed?: boolean,
-  saved?: boolean,
-  playhref?: boolean,
+  viewed: boolean,
+  saved: boolean,
+  playHref?: string,
 }
 export const FloatingMenu:React.FC<Props> = ({className}) => {
 
