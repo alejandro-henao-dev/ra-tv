@@ -7,7 +7,6 @@ export const core = (plugins: Plugin[]): void => {
   let setNext=false
   
   const props= {
-    inject,
     setState: (cb)=>{ state = cb(state) },
     next: () => { setNext = true }
   }

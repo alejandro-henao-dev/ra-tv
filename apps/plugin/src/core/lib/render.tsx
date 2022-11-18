@@ -1,4 +1,5 @@
-import ReactDOM from "react-dom";
+import React from "react";
+import {createRoot} from "react-dom/client";
 
 
 export const render = (
@@ -18,5 +19,6 @@ export const render = (
 
   
   target.append(wrapper)
-  ReactDOM.render(component, wrapper);
+  const root=createRoot(wrapper);
+  root.render(component);
 }
