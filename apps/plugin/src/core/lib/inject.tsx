@@ -5,8 +5,8 @@ export const inject = (
   target: string | HTMLElement,
   component: React.ReactElement,
   options: {
-    multi: boolean
-  }
+    multi?: boolean
+  }={}
 ) => {
   const selectionMethod = {
     single: 'querySelector',

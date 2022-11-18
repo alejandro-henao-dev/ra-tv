@@ -21,7 +21,18 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [
+                    'style-loader',
+                    {
+                      loader: 'css-loader',
+                        options: { 
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:5]'
+                            }
+                       }
+                    },
+                    'sass-loader'
+                  ]
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -34,7 +45,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        extensions: ['.tsx', '.ts', '.js', '.jsx','.scss'],
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -44,6 +55,6 @@ module.exports = {
         port: 3001,
         hot: 'only',
         compress: true,
-        open: true,
+        open: false,
     },
 };
