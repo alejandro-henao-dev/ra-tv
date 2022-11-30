@@ -7,6 +7,9 @@ export const ChaptersModelContructor = (context:any) => {
       type: Sequelize.INTEGER,
       allowNull: false
     },
+    description: {
+      type: Sequelize.STRING,
+    },
     link: {
       type: Sequelize.STRING,
       allowNull: false

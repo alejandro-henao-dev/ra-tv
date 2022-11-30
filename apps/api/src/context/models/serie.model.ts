@@ -14,7 +14,7 @@ export const SerieModelContructor = (context:any) => {
     favorite: {
       type: Sequelize.BOOLEAN
     },
-    waitinFor: {
+    waitingFor: {
       type: Sequelize.BOOLEAN
     },
     watching: {
@@ -23,6 +23,9 @@ export const SerieModelContructor = (context:any) => {
     watched: {
       type: Sequelize.BOOLEAN
     },
+    nextChapter: {
+      type: Sequelize.INTEGER,
+    }
   }, {
     freezeTableName: true
   });
