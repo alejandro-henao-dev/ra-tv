@@ -11,6 +11,9 @@ export const SerieModelContructor = (context:any) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    image: {
+      type: Sequelize.STRING,
+    },
     favorite: {
       type: Sequelize.BOOLEAN
     },
