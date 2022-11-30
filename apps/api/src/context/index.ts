@@ -8,7 +8,6 @@ import configuration from '@feathersjs/configuration'
 // model imports
 import { SerieModelContructor } from "./models/serie.model";
 import { TagModelContructor } from "./models/tags.model";
-import { SerieTagModelContructor } from "./models/serieTag.model";
 import { ChaptersModelContructor } from "./models/chapters.model";
 
 const config = configuration()()
@@ -22,11 +21,14 @@ const sequelize = new Sequelize('sequelize', '', '', {
 });
 
 export const SerieModel = SerieModelContructor(sequelize)
-export const TagModel = TagModelContructor(sequelize)
-export const SerieTagModel = SerieTagModelContructor(sequelize)
 export const ChapterModel = ChaptersModelContructor(sequelize)
+export const TagModel = TagModelContructor(sequelize)
 
 
+SerieModel.hasMany(ChapterModel);
+ChapterModel.belongsTo(SerieModel);
 
+TagModel.hasMany(SerieModel)
+SerieModel.belongsToMany(TagModel, { through: 'serieTag' });
 
 export default sequelize

@@ -1,9 +1,8 @@
 import service from "feathers-sequelize"
-import  context  from "../context"
-
+import {ChapterModel} from "../context/index"
 
 export const chapterService = service({
-  Model: context.models.chapters,
+  Model: ChapterModel,
   paginate: {
     default: 2,
     max: 4

@@ -1,9 +1,9 @@
 import service from "feathers-sequelize"
-import  context  from "../context"
+import  {TagModel}  from "../context"
 
 
 export const tagService = service({
-  Model: context.models.tag,
+  Model: TagModel,
   paginate: {
     default: 2,
     max: 4

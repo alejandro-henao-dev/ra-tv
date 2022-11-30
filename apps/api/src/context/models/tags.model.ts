@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 
 export const TagModelContructor = (context:any) => {
-  context.define('tag', {
+  return context.define('tag', {
     title: {
       type: Sequelize.STRING,
       allowNull: false

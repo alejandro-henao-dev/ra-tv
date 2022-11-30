@@ -1,9 +1,9 @@
 import service from "feathers-sequelize"
-import  context  from "../context"
+import  {SerieModel}  from "../context"
 
 
 export const seriesService = service({
-  Model: context.models.serie,
+  Model: SerieModel,
   paginate: {
     default: 2,
     max: 4

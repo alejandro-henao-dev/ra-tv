@@ -2,14 +2,14 @@ import Sequelize from "sequelize";
 
 
 export const SerieModelContructor = (context:any) => {
-  context.define('serie', {
+  return context.define('serie', {
     title: {
       type: Sequelize.STRING,
       allowNull: false
     },
     link: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     favorite: {
       type: Sequelize.BOOLEAN

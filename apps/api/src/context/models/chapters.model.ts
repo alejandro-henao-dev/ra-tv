@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 
 
 export const ChaptersModelContructor = (context:any) => {
-  context.define('chapters', {
+  return context.define('chapters', {
     number: {
       type: Sequelize.INTEGER,
       allowNull: false
@@ -12,7 +12,7 @@ export const ChaptersModelContructor = (context:any) => {
     },
     link: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     serieId: {
       type: Sequelize.STRING,
