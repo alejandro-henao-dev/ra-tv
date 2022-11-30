@@ -11,6 +11,7 @@ export type CoreConfig = {
 export type Plugin = (props: CoreProps) => any
 
 export type Title = {
+  id:number,
   name: string,
   href: string,
   viewed?: boolean,
@@ -35,9 +36,10 @@ export type TitleEpisode = {
 }
 
 export type API = {
-  getTitle: (href: string) => Title,
+  getTitle: (href: string) => Promise<Title>,
   setViewedTitle: (href: string, viewed: boolean) => boolean,
-  saveTitle: (href: string, name: string) => boolean
+  saveTitle: (href: string, name: string) => Promise<Title>
+  removeTitle: (href: string) => Promise<boolean>
   
   getSeason: (href: string) => TitleSeason,
   setViewedSeason: (href: string, viewed: boolean, titleHref?:(string) => boolean ) => boolean,

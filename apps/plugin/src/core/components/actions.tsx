@@ -1,5 +1,6 @@
 import { ButtonGroup, IconButton } from "@mui/material"
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { FC } from "react";
@@ -28,7 +29,10 @@ export const Actions: FC<Props> = ({
         onSave()
       }}
     >
-      <BookmarkBorderIcon/>
+      {saved 
+        ? <BookmarksIcon />
+        :<BookmarkBorderIcon/>
+      }
     </IconButton>}
 
     {onView && <IconButton size="small"

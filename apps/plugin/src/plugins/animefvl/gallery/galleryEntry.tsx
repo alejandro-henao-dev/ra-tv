@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Api } from "../../../core/api";
 import { FloatingMenu } from "../../../core/components/floatingMenu";
 import styles from "./index.scss"
 
-export const GalleryEntry = (props) => {
+
+export type Props = {
+  name:string,
+  href: string,
+  className?:string
+}
+export const GalleryEntry:React.FC<Props> = ({name,href,className}) => {
   const api = Api()
   
   const [titleData, setTitleData] = useState(null as any)
@@ -11,7 +17,7 @@ export const GalleryEntry = (props) => {
   
   useEffect( () => {
     (async () => {
-      setTitleData(await api.getTitle(props.href))
+      setTitleData(await api.getTitle(href))
     })()
   }, [])
   
@@ -24,14 +30,38 @@ export const GalleryEntry = (props) => {
     viewed:titleData.viewed,
     saved: titleData.saved,
     playHref: "null",
-    onView: () => { },
-    onSave: () => {}
+    onView: () => {
+
+    },
+    onSave: async () => {
+      
+      if (titleData.saved) {
+        const success = await api.removeTitle(titleData.id)
+        if (!success) {
+          return
+        }
+        setTitleData({
+          ...titleData,
+          saved:false
+        })
+      } else {
+        const success = await api.saveTitle(href, name)  
+        if (!success) {
+          return
+        }
+        setTitleData({
+          ...titleData,
+          id:success.id,
+          saved:true
+        })
+      }
+    }
   }
   
   return < >
     
     {/* render floating menu on gallery entry */}
-    <FloatingMenu className={styles.coverMenu}
+    <FloatingMenu className={`${styles.coverMenu} ${className ?? ''}`}
       {...floatingMenuProps}
     />
   </>

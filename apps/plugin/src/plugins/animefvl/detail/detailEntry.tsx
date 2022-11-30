@@ -25,7 +25,6 @@ export const DetailEntry = (props) => {
     saved: titleData.saved,
     playHref: null,
     vertical: true,
-    onSave: () => { },
     onView: () => { }
   }
   

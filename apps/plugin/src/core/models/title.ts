@@ -2,10 +2,11 @@ import { Title } from "../types"
 
 export const TitleModel = (data?:any): Title =>{
   return {
-    name: data?.name ?? "" ,
-    href: data?.href ?? "",
+    id: data?.id,
+    name: data?.title ?? "" ,
+    href: data?.link ?? "",
     viewed: Boolean(data?.viewed),
-    saved: Boolean(data?.saved) ,
+    saved: Boolean(data?.id) ,
   }
 }
 
