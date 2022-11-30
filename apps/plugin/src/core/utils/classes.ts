@@ -1,3 +1,3 @@
 export const classes = (...args): string=>{
-  return args.join(" ")
+  return args.filter(c=>c).join(" ")
 }

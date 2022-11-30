@@ -6,26 +6,46 @@ import { FC } from "react";
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 
 export type Props = {
-  onActionClick?: () => void,
-  className?:string
+  className?: string,
+  viewed?: boolean,
+  saved?: boolean,
+  onPlay?: ()=>void,
+  onSave?: ()=>void,
+  onView?: ()=>void
 }
-export const Actions: FC<Props> = ({ onActionClick = () => { },className}) => {
+export const Actions: FC<Props> = ({
+  className,
+  saved,
+  viewed,
+  onPlay,
+  onSave,
+  onView
+}) => {
+  
   return <>
-    <IconButton
+   {onSave && <IconButton
       onClick={() => {
-        onActionClick()
+        onSave()
       }}
     >
       <BookmarkBorderIcon/>
-    </IconButton>
+    </IconButton>}
 
-    {/* <IconButton size="small"> */}
+    {onView && <IconButton size="small"
+      onClick={() => {
+        onView()
+      }}
+    >
       <VisibilityOutlinedIcon />
-    {/* </IconButton> */}
+    </IconButton>}
 
-    <IconButton size="small">
+    {onPlay && <IconButton size="small"
+      onClick={() => {
+        onPlay()
+      }}
+    >
       <PlayCircleFilledWhiteOutlinedIcon />
-    </IconButton>
+    </IconButton>}
 
   </>
 }

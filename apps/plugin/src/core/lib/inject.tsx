@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom";
+import { elementHandler } from "../utils/elementHandler";
 import { render } from "./render";
 
 export const inject = (
@@ -8,19 +9,11 @@ export const inject = (
     multi?: boolean
   }={}
 ) => {
-  const selectionMethod = {
-    single: 'querySelector',
-    all: "querySelectorAll"
-  }[options.multi ? 'all' : 'single']
-  
-  const targetElement = typeof target == "string"
-    ? document[selectionMethod](target)
-    : target
-  
-  if (options.multi) {
-    (Array.from(targetElement) as HTMLElement[])
-      .forEach(ele => render(ele, component))
-  } else {
-    render(targetElement, component)
-  }
+  elementHandler(
+    target,
+    (ele) => { 
+      render(ele, component)
+    },
+    options
+  )
 }
