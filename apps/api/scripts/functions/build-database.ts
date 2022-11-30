@@ -1,8 +1,5 @@
 import fs from "fs"
 
-
-
-process.env.NODE_ENV="test"
 import context from "../../src/context"
 import configuration from '@feathersjs/configuration'
 
@@ -20,6 +17,7 @@ import os  from 'os'
  
 
 export const buildDb = async ({ force }: BuildDb) => {
+  console.log(process.env.NODE_ENV)
   const targetPath=process.env.NODE_ENV?.toLowerCase() == 'production'
     ? path.join(os.homedir(),config.db)
     : path.join(config.db)
