@@ -7,33 +7,66 @@ import { GalleryEntry } from "../gallery/galleryEntry";
 
 import styles from "./index.scss"
 import { imageToBase64 } from "../../../core/lib/imageToBase64";
+import { useState } from "react";
+import { addWrapper } from "../../../core/utils/addWrapper";
 
 export const detail = async (core: CoreProps) => {
-  const episodes= Array.from(document.querySelectorAll("ul#episodeList li:not(.Next)"))
-  const serieTitle = document.querySelector("h1.Title").textContent
+
+
+  const titleName = document.querySelector("h1.Title").textContent
+
   const descriptionBox = document.querySelector("section.WdgtCn:nth-child(1)") as HTMLElement
-  const image = await imageToBase64(".Image > figure:nth-child(1) > img:nth-child(1)")
-  
   descriptionBox.style.position = "relative"
+
+  const titleImage = await imageToBase64(".Image > figure:nth-child(1) > img:nth-child(1)")
+
+  const episodes= Array.from(document.querySelectorAll("ul#episodeList li:not(.Next)")).map((ele: HTMLElement) => {
+    
+    const wrapper = addWrapper(ele)
+    
+    return {
+      wrapper,
+      originalElement:ele
+    }
   
-  inject(descriptionBox,
-    <GalleryEntry
-      name={serieTitle}
-      href={window.location.href}
-      image={image}
-      className={ styles.serieMenu} 
+  })
+  
+  const props = {
+    episodes,
+    titleName,
+    titleImage,
+    titleMenuContainer: descriptionBox,
+  }
+  inject(document.body,
+    <DetailEntry
+     {...props}
     />
   )
+
+
+  // inject(descriptionBox,
+  //   <GalleryEntry
+  //     name={serieTitle}
+  //     href={window.location.href}
+  //     image={image}
+  //     className={styles.serieMenu} 
+  //     setTitle={(data)=>setTitleData(data)}
+  //   />
+  // )
   
 
   
-  episodes.forEach((ele: HTMLElement) => {
+  // episodes.forEach((ele: HTMLElement) => {
     
-    ele.style.position = "relative";
-    hide(ele.querySelector('.Stts') as any)
-    inject(ele,
-      <DetailEntry/>
-    )
+  //   ele.style.position = "relative";
+  //   hide(ele.querySelector('.Stts') as any)
 
-  })
+
+  //   inject(ele,
+  //     <DetailEntry/>
+  //   )
+
+  // })
+
+  // return <></>
 }

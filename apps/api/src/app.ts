@@ -44,7 +44,9 @@ app.configure(configuration())
 app.use(helmet({
   contentSecurityPolicy: false
 }))
-app.use(cors())
+app.use(cors({
+  methods:['GET','DELETE', 'PUT', 'POST','PATCH']
+}))
 app.use(compress())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

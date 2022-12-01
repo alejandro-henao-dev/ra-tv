@@ -16,6 +16,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "dev": "NODE_ENV=production npm run api:dev && npm run plugin:dev",
     "web:dev": "npm run dev --workspace=apps/web",
     "api:dev": "npm run dev --workspace=apps/api",
     "plugin:dev": "npm run start --workspace=apps/plugin",

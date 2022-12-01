@@ -1,3 +1,4 @@
+import { EpisodeModel } from "../models/episode"
 import { TitleModel } from "../models/title"
 import { API, Title, TitleEpisode, TitleSeason } from "../types"
 
@@ -58,12 +59,56 @@ export const remoteApi: API = {
     return true
   },
   
-  getEpisode: (href: string) => {
-    return { } as TitleEpisode
+  getEpisode: async (href: string) => {
+    const url = new URL("chapter", base)
+    url.searchParams.append("link", href)
+    url.searchParams.append("$limit", "1")
+    
+    const res = await fetch(url)
+    const {data}=await res.json()
+    return EpisodeModel(data?.at(0))
   },
 
-  setViewedEpisode: (href: string, viewed: boolean, titleHref?: string) => {
-    return true
+  saveEpisode: async (href: string, number:string,titleId: number) => {
+    const body=JSON.stringify({
+      link: href,
+      number,
+      serieId:titleId
+    })
+   
+    const url = new URL("chapter", base)
+    const res = await fetch(url, {
+      method: "post",
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+
+    const data= await res.json()
+    return EpisodeModel(data)
+  },
+
+  setViewedEpisode: async (id: string, viewed:boolean) => {
+    const body=JSON.stringify({
+      watched:viewed
+    })
+   
+    const url = new URL(`chapter/${id}`, base)
+    const res = await fetch(url, {
+      method: "PATCH",
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+
+    const data = await res.json()
+    
+    return data.watched
+
   },
 
   getNextEpisode: (titlehref: string) => {

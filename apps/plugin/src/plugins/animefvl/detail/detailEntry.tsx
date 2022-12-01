@@ -1,36 +1,47 @@
-import { useEffect, useState } from "react";
-import { Api } from "../../../core/api";
-import { FloatingMenu } from "../../../core/components/floatingMenu";
-import  styles  from "./index.scss";
+import ReactDOM from "react-dom";
+import React, { useState } from "react";
+import { Title } from "../../../core/types";
+import { EntryEpisode } from "./entryEpisode";
+import { EntryTitle } from "./entryTitle";
 
-export const DetailEntry = (props) => {
-  const api = Api()
-  
-  const [titleData, setTitleData] = useState(null as any)
+import {Props as entryTitleProps} from './entryTitle'
+import {Props as EntryEpisodeProps} from "./entryEpisode"
+export interface Props extends entryTitleProps, EntryEpisodeProps {
+  episodes: {
+    wrapper: Element,
+    originalElement:Element
+  }[] 
+}
 
-  
-  useEffect( () => {
-    (async () => {
-      setTitleData(await api.getTitle(props.href))
-    })()
-  }, [])
-  
+export const DetailEntry:React.FC<Props> = (props) => {
+ 
+  const [titleData, setTitleData]=useState(null)
 
-  if (!titleData) {
-    return
+  const titleProps = {
+    titleName: props.titleName,
+    titleImage: props.titleImage,
+    titleMenuContainer: props.titleMenuContainer
   }
 
-  let floatingMenuProps = {
-    viewed:titleData.viewed,
-    saved: titleData.saved,
-    playHref: null,
-    vertical: true,
-    onView: () => { }
-  }
-  
-  return < >
-    <FloatingMenu className={styles.episodeEntry}
-      {...floatingMenuProps}
+  const episodesRender=props.episodes.map(episode => {
+    const episodeProps = {
+      title: titleData,
+      element: episode.originalElement as HTMLElement,
+    }
+    return ReactDOM.createPortal(
+      <EntryEpisode
+        {...episodeProps}
+      />,
+      episode.wrapper
+    )
+  })
+
+  return <>
+    <EntryTitle
+      setTitleData={(data) => setTitleData(data)}
+      {...titleProps}
     />
+
+    {episodesRender}
   </>
 }

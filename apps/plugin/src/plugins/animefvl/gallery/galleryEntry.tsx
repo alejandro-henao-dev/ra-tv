@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Api } from "../../../core/api";
 import { FloatingMenu } from "../../../core/components/floatingMenu";
+import { Title } from "../../../core/types";
+
 import styles from "./index.scss"
 
 
@@ -8,19 +10,30 @@ export type Props = {
   name:string,
   href: string,
   image?: string,
+  setTitle?:(serie: Title) => any
   className?:string
 }
-export const GalleryEntry:React.FC<Props> = ({name,href,image,className}) => {
+export const GalleryEntry:React.FC<Props> = ({name,href,image,className,setTitle}) => {
   const api = Api()
   
   const [titleData, setTitleData] = useState(null as any)
 
   
+  const bubbleData = (data) => {
+    if (typeof setTitle == 'function') {
+      setTitle(data)
+    }
+  }
+
   useEffect( () => {
     (async () => {
       setTitleData(await api.getTitle(href))
     })()
   }, [])
+
+  useEffect(() => {
+    bubbleData(titleData)
+  },[titleData])
   
 
   if (!titleData) {
@@ -43,6 +56,7 @@ export const GalleryEntry:React.FC<Props> = ({name,href,image,className}) => {
         }
         setTitleData({
           ...titleData,
+          id:null,
           saved:false
         })
       } else {

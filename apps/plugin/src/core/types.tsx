@@ -27,7 +27,8 @@ export type TitleSeason = {
 }
 
 export type TitleEpisode = {
-  ownerHref?: string,
+  id?:number
+  titleId?: string,
   seasonHref?: string,
   href: string,
   episode: number,
@@ -44,8 +45,9 @@ export type API = {
   getSeason: (href: string) => TitleSeason,
   setViewedSeason: (href: string, viewed: boolean, titleHref?:(string) => boolean ) => boolean,
   
-  getEpisode: (href: string) => TitleEpisode,
-  setViewedEpisode: (href: string, viewed: boolean, titleHref?: string) => boolean,
+  getEpisode: (href: string) => Promise<TitleEpisode>,
+  saveEpisode: (href: string, number:string,titleId: number)=>Promise<TitleEpisode>
+  setViewedEpisode: (id: string, viewed: boolean) => Promise<boolean>,
   getNextEpisode:(titlehref:string)=>TitleEpisode
   
 }
