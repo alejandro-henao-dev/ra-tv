@@ -38,7 +38,7 @@ export type TitleEpisode = {
 export type API = {
   getTitle: (href: string) => Promise<Title>,
   setViewedTitle: (href: string, viewed: boolean) => boolean,
-  saveTitle: (href: string, name: string) => Promise<Title>
+  saveTitle: (href: string, name: string, image:string) => Promise<Title>
   removeTitle: (href: string) => Promise<boolean>
   
   getSeason: (href: string) => TitleSeason,

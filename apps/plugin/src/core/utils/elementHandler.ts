@@ -1,6 +1,8 @@
+import { selectElement } from "./selectElement"
+
 export const elementHandler = (
-  target: string | HTMLElement,
-  callback:(element:HTMLElement)=>void,
+  target: string | Element,
+  callback:(element:Element)=>void,
   options: {
     multi?: boolean
   }={}
@@ -9,18 +11,11 @@ export const elementHandler = (
   if (!target) {
     return
   }
-
-  const selectionMethod = {
-    single: 'querySelector',
-    all: "querySelectorAll"
-  }[options.multi ? 'all' : 'single']
   
-  const targetElement = typeof target == "string"
-    ? document[selectionMethod](target)
-    : target
+  const targetElement =selectElement(target,options.multi)
   
   if (options.multi) {
-    (Array.from(targetElement) as HTMLElement[])
+    (Array.from(targetElement) as Element[])
       .forEach(ele => callback(ele))
   } else {
     callback(targetElement)

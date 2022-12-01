@@ -18,10 +18,11 @@ export const remoteApi: API = {
     return true
   },
 
-  saveTitle: async (href: string, name: string) => {
+  saveTitle: async (href: string, name: string, image:string) => {
     const body=JSON.stringify({
       link: href,
-      title:name
+      title: name,
+      image
     })
    
     const url = new URL("serie", base)

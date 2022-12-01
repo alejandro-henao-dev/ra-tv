@@ -40,7 +40,10 @@ export const Actions: FC<Props> = ({
         onView()
       }}
     >
-      <VisibilityOutlinedIcon />
+      {viewed
+        ? < VisibilityOutlinedIcon />
+        : <VisibilityIcon/>
+      }
     </IconButton>}
 
     {onPlay && <IconButton size="small"

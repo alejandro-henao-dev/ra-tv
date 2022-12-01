@@ -7,9 +7,10 @@ import styles from "./index.scss"
 export type Props = {
   name:string,
   href: string,
+  image?: string,
   className?:string
 }
-export const GalleryEntry:React.FC<Props> = ({name,href,className}) => {
+export const GalleryEntry:React.FC<Props> = ({name,href,image,className}) => {
   const api = Api()
   
   const [titleData, setTitleData] = useState(null as any)
@@ -45,7 +46,7 @@ export const GalleryEntry:React.FC<Props> = ({name,href,className}) => {
           saved:false
         })
       } else {
-        const success = await api.saveTitle(href, name)  
+        const success = await api.saveTitle(href, name, image)  
         if (!success) {
           return
         }
