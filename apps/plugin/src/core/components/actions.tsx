@@ -41,8 +41,8 @@ export const Actions: FC<Props> = ({
       }}
     >
       {viewed
-        ? < VisibilityOutlinedIcon />
-        : <VisibilityIcon/>
+        ? <VisibilityIcon/>
+        : < VisibilityOutlinedIcon />
       }
     </IconButton>}
 
