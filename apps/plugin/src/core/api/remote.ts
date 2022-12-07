@@ -90,6 +90,26 @@ export const remoteApi: API = {
     return EpisodeModel(data)
   },
 
+  saveTitleImage: async (id: string, image: string) => {
+    const body=JSON.stringify({
+      image
+    })
+   
+    const url = new URL(`serie/${id}`, base)
+    const res = await fetch(url, {
+      method: "PATCH",
+      body,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+
+    const data = await res.json()
+    console.log(data)
+    return data.watched
+  },
+
   setViewedEpisode: async (id: string, viewed:boolean) => {
     const body=JSON.stringify({
       watched:viewed
