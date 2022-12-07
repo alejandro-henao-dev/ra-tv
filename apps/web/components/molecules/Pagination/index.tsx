@@ -5,7 +5,7 @@ import { Box, Pagination as PaginationCore, PaginationProps } from "@mui/materia
 export type Props = {
   pages: number,
   current:number
-
+  onChange:(event: React.ChangeEvent<unknown>, value: number)=>void
 }
 export const Pagination: React.FC<Props> = props => {
   return <Box component={'section'}
@@ -19,6 +19,7 @@ export const Pagination: React.FC<Props> = props => {
       count={props.pages}
       page={props.current}
       size={'small'}
+      onChange={props.onChange}
     />
   </Box>
 }

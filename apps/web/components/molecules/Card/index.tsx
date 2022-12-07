@@ -21,11 +21,11 @@ export const Card: React.FC<Props> = (props) => {
         image={ props.coverImg }
         alt={props.title}
       />
-    <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+    <CardContent component="div">
+        <Typography gutterBottom variant="body2" component="div" sx={{fontSize:".8em"}}>
           {props.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" component="div">
           {props.badges.map(badge => 
             <Chip label={badge} key={ badge } />
           )}
