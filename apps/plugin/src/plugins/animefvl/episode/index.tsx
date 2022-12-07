@@ -1,3 +1,4 @@
+import { getAbsUrl } from "../../../core/lib/getAbsUrl";
 import { hide } from "../../../core/lib/hide";
 import { inject } from "../../../core/lib/inject";
 import { CoreProps } from "../../../core/types";
@@ -6,27 +7,28 @@ import { EpisodeEntry } from "./episodeEntry";
 export const epidose = (core:CoreProps) => {
   const cardSelector = ".CapOptns"
   
-  hide(cardSelector + " .fa-download")
-  hide(cardSelector + " .fa-eye")
-  hide(cardSelector + " .fa-lightbulb-o")
-  hide(cardSelector + " .fa-flag-o")
+  hide(cardSelector + " .fa-download",{removeChild:true})
+  hide(cardSelector + " .fa-eye",{removeChild:true})
+  hide(cardSelector + " .fa-lightbulb-o",{removeChild:true})
+  hide(cardSelector + " .fa-flag-o",{removeChild:true})
 
-  Array.from(document.querySelectorAll(cardSelector))
-    .forEach((ele: HTMLElement) => {
-      
+  const container = document.querySelector(cardSelector)
+    
+  const titleLinkElement=document.querySelector('.CapNvLs')
+
+  const titleHref=getAbsUrl(titleLinkElement.getAttribute("href"))
       // ele.style.position = "relative";
 
       // const name = ele.querySelector(".Title").textContent
       // const link = ele.querySelector("a").getAttribute('href')
       // const href = getAbsUrl(link)
 
-      const title = {
-        name:"",
-        href:""
+      const episode = {
+        titleHref,
+        href:window.location.href
       }
       
-      inject(ele,
-        <EpisodeEntry {...title} />
+      inject(container,
+        <EpisodeEntry {...episode} />
       )
-    }) 
 }

@@ -3,7 +3,7 @@ import { elementHandler } from "../utils/elementHandler";
 import { render } from "./render";
 
 export const inject = (
-  target: string | HTMLElement,
+  target: string | HTMLElement | Element,
   component: React.ReactElement,
   options: {
     multi?: boolean

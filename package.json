@@ -16,7 +16,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "dev": "NODE_ENV=production npm run api:dev && npm run plugin:dev",
+    "dev": "NODE_ENV=production concurrently \"npm:api:dev\" \"npm:plugin:dev\"",
     "web:dev": "npm run dev --workspace=apps/web",
     "api:dev": "npm run dev --workspace=apps/api",
     "plugin:dev": "npm run start --workspace=apps/plugin",
@@ -73,6 +73,7 @@
     "axios": "^1.0.0",
     "babel-loader": "^9.0.1",
     "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.25.0",
