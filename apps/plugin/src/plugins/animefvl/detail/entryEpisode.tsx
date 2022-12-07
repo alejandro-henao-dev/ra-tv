@@ -29,7 +29,7 @@ export const EntryEpisode: React.FC<Props> = ({
     element.style.position = "relative";
 
     (async () => {
-      hide(element.querySelector('.Stts'))
+      hide(element.querySelector('.opivw'),{removeChild:true})
       const href = getAbsUrl(element.querySelector("a").getAttribute("href"))
       const number= element.querySelector("p").textContent.replace('Episodio ',"")
       const existingData:TitleEpisode = await api.getEpisode(href)
