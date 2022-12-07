@@ -6,7 +6,6 @@ export const seriesService = service({
   Model: SerieModel,
   paginate: {
     default: 2,
-    max: 4
   }
 })
 

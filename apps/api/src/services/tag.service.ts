@@ -6,7 +6,6 @@ export const tagService = service({
   Model: TagModel,
   paginate: {
     default: 2,
-    max: 4
   }
 })
 
